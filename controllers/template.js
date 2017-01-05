@@ -120,7 +120,7 @@ module.exports.getJSON = function(req, res) {
     if (!template) {
       return res.sendStatus(404)
     }
-    
+
     res.set({ 'Content-Type': 'application/json' })
     res.status(200).send(template.styleJSON)
   })
@@ -212,7 +212,7 @@ module.exports.upload = function(req, res) {
 
   writeStream.on('close', function(template) {
     var thumb = {}
-    thumb['background-image'] = 'url(\'' +apiUrl + '/templates/wanyanyan/rkXfofQc/image\')'
+    thumb['background-image'] = 'url(\'' +apiUrl + '/templates/'+ req.params.username + '/' + template_id + '/image\')'
     var newTemplate = new Template({
       template_id: template_id,
       owner: req.params.username,
@@ -237,6 +237,6 @@ module.exports.upload = function(req, res) {
 
         return res.status(200).json(newTemplate)
       })
-    })    
+    })
   })
 }
